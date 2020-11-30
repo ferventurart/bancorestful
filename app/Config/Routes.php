@@ -1,12 +1,13 @@
-<?php namespace Config;
+<?php
+
+namespace Config;
 
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
 // Load the system's routing file first, so that the app and ENVIRONMENT
 // can override as needed.
-if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
-{
+if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
 	require SYSTEMPATH . 'Config/Routes.php';
 }
 
@@ -32,7 +33,7 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
-$routes->group('api', ['namespace' => 'App\Controllers\API'], function($routes) {
+$routes->group('api', ['namespace' => 'App\Controllers\API'], function ($routes) {
 	$routes->get('clientes', 'Clientes::index');
 	$routes->post('clientes/create', 'Clientes::create');
 	$routes->get('clientes/edit/(:num)', 'Clientes::edit/$1');
@@ -44,6 +45,18 @@ $routes->group('api', ['namespace' => 'App\Controllers\API'], function($routes) 
 	$routes->get('tipostransaccion/edit/(:num)', 'TiposTransaccion::edit/$1');
 	$routes->put('tipostransaccion/update/(:num)', 'TiposTransaccion::update/$1');
 	$routes->delete('tipostransaccion/delete/(:num)', 'TiposTransaccion::delete/$1');
+
+	$routes->get('roles', 'Roles::index');
+	$routes->post('roles/create', 'Roles::create');
+	$routes->get('roles/edit/(:num)', 'Roles::edit/$1');
+	$routes->put('roles/update/(:num)', 'Roles::update/$1');
+	$routes->delete('roles/delete/(:num)', 'Roles::delete/$1');
+
+	$routes->get('usuarios', 'Usuarios::index');
+	$routes->post('usuarios/create', 'Usuarios::create');
+	$routes->get('usuarios/edit/(:num)', 'Usuarios::edit/$1');
+	$routes->put('usuarios/update/(:num)', 'Usuarios::update/$1');
+	$routes->delete('usuarios/delete/(:num)', 'Usuarios::delete/$1');
 
 	$routes->get('cuentas', 'Cuentas::index');
 	$routes->post('cuentas/create', 'Cuentas::create');
@@ -73,7 +86,6 @@ $routes->group('api', ['namespace' => 'App\Controllers\API'], function($routes) 
  * You will have access to the $routes object within that file without
  * needing to reload it.
  */
-if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php'))
-{
+if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
 	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }

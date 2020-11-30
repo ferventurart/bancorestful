@@ -4,6 +4,7 @@ namespace App\Models\CustomRules;
 
 use App\Models\ClienteModel;
 use App\Models\CuentaModel;
+use App\Models\RolModel;
 use App\Models\TipoTransaccionModel;
 
 class MyCustomRules
@@ -47,5 +48,13 @@ class MyCustomRules
         $tipotransaccion = $model->find($id);
 
         return $tipotransaccion == null ? false : true;
+    }
+
+    public function is_valid_rol(int $id): bool
+    {
+        $model = new RolModel();
+        $rol = $model->find($id);
+
+        return $rol == null ? false : true;
     }
 }
