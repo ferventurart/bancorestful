@@ -46,7 +46,7 @@ class Auth extends BaseController
         $payload = [
             'aud' => base_url(),
             'iat' => $time, //como entero el tiempo,
-            'exp' => $time + 5, //como entero el tiempo cuando expira el token
+            'exp' => $time + 120, //como entero el tiempo cuando expira el token
             'data' => [
                 'nombre' => $usuario['nombre'],
                 'username' => $usuario['username'],
